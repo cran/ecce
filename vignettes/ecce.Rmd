@@ -1,0 +1,104 @@
+---
+title: "Introduction to ecce"
+author: "[Xinyuan Chu](https://cxy.rbind.io)"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    number_sections: no
+    toc: yes
+classoption: "hyperref,"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Introduction to ecce}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+The goal of ecce is to make it easy to translate English words into Chinese, or translate Chinese words into English. It support pipe functions ` %>% ` to manipulate data.
+
+```{r, eval = FALSE}
+# Install development version from GitLab
+remotes::install_git("https://gitlab.com/chuxinyuan/ecce.git")
+```
+
+## Basic usage
+
+### Translate a single words
+
+```{r, eval = FALSE}
+# Example-1
+x1 <- "苹果"
+translate(x1)
+
+# Example-2
+x2 <- "apple"
+translate(x2)
+```
+
+### Translate a vector of words
+
+```{r, eval = FALSE}
+# Example-3
+x3 <- c("苹果", "香蕉", "梨子", "我爱你")
+translate(x3)
+
+# Example-4
+x4 <- c("apple", "banana", "pear", "I love you")
+translate(x4)
+```
+
+## Get more useful translation information 
+
+```{r, eval = FALSE}
+# Example-5
+x5 <- "苹果"
+translate_full(x5)
+
+# Example-6
+x6 <- "apple"
+translate_full(x6)
+```
+
+This function `translate_full()` also support pass into a vector which consists of Chinese or English words. But the form of output is not elegant enough.
+
+## Browse translate results in website
+
+```{r, eval = FALSE}
+# Example-7
+x7 <- "苹果"
+translate_view(x7)
+
+# Example-8
+x8 <- "apple"
+translate_view(x8)
+```
+
+In the same way, this function also support pass into a vector.
+
+## Manipulate data with pipe
+
+```{r eval = FALSE}
+library(dplyr)
+love <- c("father", "mother", "I love U")
+love %>%  
+  translate() %>% 
+  paste0(., collapse = "")
+```
+
+## Code sources and improvements
+
+ecce package is based on [RYoudaoTranslate](https://CRAN.R-project.org/package=RYoudaoTranslate)(Ke-Hao Wu, 2014), which provides function to translate English words into Chinese. also provides interface to Youdao translation open API for R user. But this software is not very friendly to use, which can't support translate Chinese words into English, I have made some improvements on the basis of this software.
+
+## References
+
+Ke-Hao Wu (2014). RYoudaoTranslate: R package provide functions to translate English words into Chinese. R package version 1.0. https://CRAN.R-project.org/package=RYoudaoTranslate
+
+
+
+
+
+
+
+
+
