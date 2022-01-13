@@ -76,7 +76,9 @@ translate_full = function(x) {
     }
 
   # Return to the result
-  return(result)
+  return(
+    purrr::flatten(result)
+  )
 
 }
 

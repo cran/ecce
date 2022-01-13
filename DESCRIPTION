@@ -2,10 +2,10 @@ Package: ecce
 Type: Package
 Title: Translate English Words into Chinese, or Translate Chinese Words
         into English
-Version: 1.0.7
+Version: 1.0.8
 Authors@R: person("Xinyuan", "Chu", email = "chuxinyuan@outlook.com", role = c("aut", "cre"))
 Maintainer: Xinyuan Chu <chuxinyuan@outlook.com>
-Date: 2020-06-23 12:06:09 UTC
+Date: 2022-01-14 03:06:09 UTC
 Description: If translate English words into Chinese, there is a faster 
     way for R user. 'RYoudaoTranslate' package provides interface to 
     'Youdao' <http://youdao.com/> translation open API for R user. 'entcn' 
@@ -16,16 +16,15 @@ Description: If translate English words into Chinese, there is a faster
     support browse translation results in website.
 License: MIT + file LICENSE
 URL: https://cxy.rbind.io/ecce/, https://gitlab.com/chuxinyuan/ecce
-BugReports: https://gitlab.com/chuxinyuan/ecce/issues
+BugReports: https://gitlab.com/chuxinyuan/ecce/-/issues
 Depends: R (>= 3.5.0)
-Imports: RCurl, rjson, stringr
-RoxygenNote: 7.1.0
+Imports: RCurl, rjson, purrr, stringr
+RoxygenNote: 7.1.2
 Suggests: testthat (>= 2.1.0), knitr, rmarkdown, dplyr
 VignetteBuilder: knitr
 Encoding: UTF-8
-LazyData: true
 NeedsCompilation: no
-Packaged: 2020-06-28 03:00:48 UTC; cxy
+Packaged: 2022-01-13 19:20:58 UTC; cxy
 Author: Xinyuan Chu [aut, cre]
 Repository: CRAN
-Date/Publication: 2020-06-29 09:10:05 UTC
+Date/Publication: 2022-01-13 19:42:42 UTC
