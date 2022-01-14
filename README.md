@@ -3,11 +3,7 @@
 
 # ecce <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-ecce offers some functions which translate English words into Chinese,
-or translate Chinese words into English. You can see ecce in action at
-<https://cxy.rbind.io/ecce/>: this is the output of ecce applied to the
-latest version of ecce. Learn more in `vignette("ecce")` or
-`?translate`.
+ecce offers some functions which translate English words into Chinese, or translate Chinese words into English. Learn more in `vignette("ecce")` or `help(package = "ecce")`. You can visit <https://cxy.rbind.io/ecce/> for the latest information.
 
 ## Installation
 
