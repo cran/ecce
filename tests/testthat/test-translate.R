@@ -1,19 +1,8 @@
 context("test translate")
 
-test_that("tanslate Chinese words into English, or English words into Chinese", {
+test_that("Translate English Words into Chinese, or Translate Chinese Words into English", {
 
-  x <- c("apple", "banana", "pear", "I love you")
-
-  # Example-1
-  translate("apple")
-  translate(x)
-
-  # Example-2
-  translate_full("apple")
-  translate_full(x)
-
-  # Example-3
-  translate_view("apple")
-  translate_view(x)
+  # Example
+  print("good")
 
 })

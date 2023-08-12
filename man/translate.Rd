@@ -4,26 +4,27 @@
 \alias{translate}
 \title{Translate English words into Chinese, or translate Chinese words into English}
 \usage{
-translate(x)
+translate(input, from = "auto", to = "auto")
 }
 \arguments{
-\item{x}{A vector made up of English or Chinese words}
+\item{input}{An English or Chinese word.}
+
+\item{from}{The source language, an optional parameter.}
+
+\item{to}{The target language, an optional parameter.}
 }
 \value{
-A vector made up of Chinese or English words
+A list consisting of Phonetic, explains, etc about target language.
 }
 \description{
-When you pass in a vector consisting of an English or Chinese words,
-this function will calls the Youdao translation open API for R to return the
-corresponding type of Chinese or English representation.
+When you pass in an English or Chinese word, this function will calls
+the Youdao text translation API for R to return the corresponding type
+of Chinese or English representation.
 }
 \examples{
 
-# Example-1
-translate("apple")
-
-# Example-2
-x <- c("apple", "banana", "pear", "I love you")
-translate(x)
+# Example(Not run)
+# translate("good")
+# translate("quarto", from = "en", to = "zh-CHS")
 
 }

@@ -1,6 +1,6 @@
 ---
 title: "Introduction to ecce"
-author: "[Xinyuan Chu](https://cxy.rbind.io)"
+author: "[Xinyuan Chu](https://cxy.rbind.io/)"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
@@ -15,90 +15,77 @@ vignette: >
 
 ## Introduction
 
-The goal of ecce is to make it easy to translate English words into Chinese, or translate Chinese words into English. It support pipe functions ` %>% ` to manipulate data.
+The goal of ecce is to make it easy to translate English words into Chinese, or translate Chinese words into English. It also support browse translation results in website.
 
 ```{r, eval = FALSE}
 # Install development version from GitLab
 remotes::install_git("https://gitlab.com/chuxinyuan/ecce.git")
+# Install from CRAN
+install.packages("ecce")
+```
+
+## Configure the ID and PASSWORD for the Youdao API
+
+To use the ecce package, users need to first register with the [Youdao Wisdom Cloud AI open platform](https://ai.youdao.com/), and then open the text translation application.
+Then put your Youdao API ID and PASSWORD in the following code and run it once.
+
+```{r, eval=FALSE}
+if (!file.exists("~/.Renviron")){
+  file.create("~/.Renviron")
+} 
+
+file_path = "~/.Renviron"
+file = file(file_path, open = "a")
+
+comment = "# ID and PASSWORD of Youdao Translation"
+writeLines(comment, file)
+
+code_lines = c(
+  "app_key = \"Your Youdao API ID\"",
+  "app_secret = \"Your Youdao API PASSWORD\""
+)
+
+for (code in code_lines) {
+  writeLines(code, file)
+}
+
+close(file)
 ```
 
 ## Basic usage
 
-### Translate a single words
+By default, the from and to parameter values are set to "auto", which translate English into Chinese, or Chinese into English. Sometimes you need to explicitly specify the from and to values as "en" or "zh-CHS".
+
+The code for each language can be found in the [Youdao Text Translation API documentation](https://ai.youdao.com/DOCSIRMA/html/trans/api/wbfy/index.html).
 
 ```{r, eval = FALSE}
 # Example-1
-x1 <- "苹果"
-translate(x1)
+translate("中国")
 
 # Example-2
-x2 <- "apple"
-translate(x2)
-```
+translate("good")
 
-### Translate a vector of words
-
-```{r, eval = FALSE}
 # Example-3
-x3 <- c("苹果", "香蕉", "梨子", "我爱你")
-translate(x3)
-
-# Example-4
-x4 <- c("apple", "banana", "pear", "I love you")
-translate(x4)
+translate(
+  input = "quarto", 
+  from = "en", 
+  to = "zh-CHS"
+)
 ```
-
-## Get more useful translation information 
-
-```{r, eval = FALSE}
-# Example-5
-x5 <- "苹果"
-translate_full(x5)
-
-# Example-6
-x6 <- "apple"
-translate_full(x6)
-```
-
-This function `translate_full()` also support pass into a vector which consists of Chinese or English words. But the form of output is not elegant enough.
 
 ## Browse translate results in website
 
 ```{r, eval = FALSE}
-# Example-7
-x7 <- "苹果"
-translate_view(x7)
+# Example-4
+translate_view("中国")
 
-# Example-8
-x8 <- "apple"
-translate_view(x8)
+# Example-5
+translate_view("good")
+
+# Example-6
+translate_view(
+  input = "quarto", 
+  from = "en", 
+  to = "zh-CHS"
+)
 ```
-
-In the same way, this function also support pass into a vector.
-
-## Manipulate data with pipe
-
-```{r eval = FALSE}
-library(dplyr)
-love <- c("father", "mother", "I love U")
-love %>%  
-  translate() %>% 
-  paste0(., collapse = "")
-```
-
-## Code sources and improvements
-
-ecce package is based on [RYoudaoTranslate](https://CRAN.R-project.org/package=RYoudaoTranslate)(Ke-Hao Wu, 2014), which provides function to translate English words into Chinese. also provides interface to Youdao translation open API for R user. But this software is not very friendly to use, which can't support translate Chinese words into English, I have made some improvements on the basis of this software.
-
-## References
-
-Ke-Hao Wu (2014). RYoudaoTranslate: R package provide functions to translate English words into Chinese. R package version 1.0. https://CRAN.R-project.org/package=RYoudaoTranslate
-
-
-
-
-
-
-
-
-

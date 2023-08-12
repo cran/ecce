@@ -4,25 +4,26 @@
 \alias{translate_view}
 \title{Open a Youdao website browse translation results}
 \usage{
-translate_view(x)
+translate_view(input, from = "auto", to = "auto")
 }
 \arguments{
-\item{x}{A vector made up of English or Chinese words}
+\item{input}{An English or Chinese word.}
+
+\item{from}{The source language, an optional parameter.}
+
+\item{to}{The target language, an optional parameter.}
 }
 \value{
-Not print any result but open a website
+A list consisting of Phonetic, explains, etc about target language.
 }
 \description{
-When you pass in a vector consisting of an English or Chinese words,
-this function will Open Youdao website browse translation results.
+When you pass in an English or Chinese word, this function will Open
+Youdao website browse translation results.
 }
 \examples{
 
-# Example-1
-translate_view("apple")
-
-# Example-2
-x <- c("apple", "banana", "pear", "I love you")
-translate_view(x)
+# Example(Not run)
+# translate_view("good")
+# translate_view("quarto", from = "en", to = "zh-CHS")
 
 }

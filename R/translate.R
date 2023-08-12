@@ -1,75 +1,132 @@
 #' @title Translate English words into Chinese, or translate Chinese words into English
 #'
 #' @description
-#' When you pass in a vector consisting of an English or Chinese words,
-#' this function will calls the Youdao translation open API for R to return the
-#' corresponding type of Chinese or English representation.
+#' When you pass in an English or Chinese word, this function will calls
+#' the Youdao text translation API for R to return the corresponding type
+#' of Chinese or English representation.
 #'
-#' @param x A vector made up of English or Chinese words
+#' @param input An English or Chinese word.
 #'
-#' @return A vector made up of Chinese or English words
+#' @param from The source language, an optional parameter.
+#'
+#' @param to The target language, an optional parameter.
+#'
+#' @return A list consisting of Phonetic, explains, etc about target language.
 #'
 #' @examples
 #'
-#' # Example-1
-#' translate("apple")
-#'
-#' # Example-2
-#' x <- c("apple", "banana", "pear", "I love you")
-#' translate(x)
+#' # Example(Not run)
+#' # translate("good")
+#' # translate("quarto", from = "en", to = "zh-CHS")
 #'
 #' @export
 
-######################################################################################
+#------------------------------------------------------------------------------#
 
-# The most basic translation function gives only one result at a time
+translate = function(input, from = "auto", to = "auto") {
 
-translate = function(x) {
-
-  # Support keyfrom and key
-  keyfrom = "JustForTestYouDao"
-  key = "498375134"
-
-  # Define a container to store results in
-  result = 1:length(x)
-
-  # Traverse every member of the x vector
-  for (i in 1:length(x)) {
-
-    # Replace the Spaces between words with "+"
-    x[i] = gsub(
-      pattern = " ",
-      replacement = "+",
-      x = x[i]
-      )
-
-    # Generate the url
-    url = paste0(
-      "http://fanyi.youdao.com/openapi.do?",
-      "keyfrom=", keyfrom,
-      "&key=", key,
-      "&type=data&doctype=json&version=1.2&q=",
-      x[i]
-    )
-
-    # Get the data in the website and clean it
-    url = utils::URLencode(iconv(url, to = 'UTF-8'))
-    initial = RCurl::getURL(url)
-    obj = rjson::fromJSON(initial)
-    web = obj$web
-    value = (web)[[1]]$value
-    result[i] = value[1]
-
-    }
-
-  # Solve messy code problems that may exist in different environments
-  if(stringr::str_detect(Sys.getlocale(), "936")) {
-    result = iconv(result, "UTF-8", "gb2312")
+  # Check network connection
+  test_internet = curl::has_internet()
+  if (!test_internet) {
+    stop('No network connection found...')
   }
 
-  # Return to the result
-  return(result)
+  # Set Youdao API address
+  api_url = "http://openapi.youdao.com/api"
+
+  # Get the ID and PASSWORD for the Youdao API
+  app_key = Sys.getenv("app_key")
+  app_secret = Sys.getenv("app_secret")
+  if (app_key == "" | app_secret == "") {
+    stop('You need to provide the ID and PASSWORD of the Youdao API.')
+  }
+
+  # Set the rule for intercepting input characters
+  input = input[1]
+  truncate = function(input) {
+    if (is.null(input)) {
+      return(NULL)
+    }
+    size = nchar(input)
+    if (size <= 20) {
+      return(input)
+    } else {
+      truncated_input = paste0(
+        substr(input, 1, 10), size,
+        substr(input, size - 9, size)
+      )
+      return(truncated_input)
+    }
+  }
+  q = truncate(input)
+
+  # Set the source and target language
+  from = from
+  to = to
+
+  # Set a unique universal identifier
+  salt = as.character(uuid::UUIDgenerate())
+
+  # Handle timestamp issues, it must be UTC time
+  curtime = as.character(
+    as.integer(
+      as.POSIXct(Sys.time(), tz = "UTC")
+    )
+  )
+
+  # Processing signature information
+  # sha256(ID+input+salt+curtime+secret)
+  sign = tolower(
+    digest::digest(
+      paste0(app_key, q, salt, curtime, app_secret),
+      algo = "sha256",
+      serialize = FALSE
+    )
+  )
+
+  # Setting the Signature Type
+  signType = "v3"
+
+  # Generate parameter list
+  params = list(
+    q = q,
+    from = from,
+    to = to,
+    appKey = app_key,
+    salt = salt,
+    sign = sign,
+    signType = signType,
+    curtime = curtime
+  )
+
+  # Obtain preliminary translation data
+  response = httr::GET(url = api_url, query = params)
+  translated_data = httr::content(response, "text")
+
+  # The result of cleaning and processing
+  json_data = jsonlite::fromJSON(translated_data)
+  result = list(
+    Query = json_data$query,
+    Phonetic = json_data$basic$phonetic,
+    WFS = json_data$basic$wfs,
+    Explains = json_data$basic$explains
+  )
+
+  # Return to the result and gives the necessary prompts
+  if (is.null(result$Explains)) {
+    stop(
+      paste(
+      "Please check that the word are spelled correctly,",
+       "if the spelling is really fine, then you can try",
+       "explicitly giving the source language and target",
+       "language parameter Settings by 'from' and 'to'.",
+      sep = " "
+      )
+    )
+  } else {
+    return(result)
+  }
 
 }
 
-######################################################################################
+#------------------------------------------------------------------------------#
