@@ -12,7 +12,7 @@
 
 <meta name="author" content="Xinyuan Chu" />
 
-<meta name="date" content="2023-08-12" />
+<meta name="date" content="2023-09-03" />
 
 <title>Introduction to ecce</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to ecce</h1>
 <h4 class="author"><a href="https://cxy.rbind.io/">Xinyuan Chu</a></h4>
-<h4 class="date">2023-08-12</h4>
+<h4 class="date">2023-09-03</h4>
 
 
 <div id="TOC">
@@ -351,6 +351,8 @@ ID and PASSWORD for the Youdao API</a></li>
 <li><a href="#basic-usage" id="toc-basic-usage">Basic usage</a></li>
 <li><a href="#browse-translate-results-in-website" id="toc-browse-translate-results-in-website">Browse translate results in
 website</a></li>
+<li><a href="#obtain-and-label-chinese-pinyin" id="toc-obtain-and-label-chinese-pinyin">Obtain and label Chinese
+pinyin</a></li>
 </ul>
 </div>
 
@@ -358,7 +360,9 @@ website</a></li>
 <h2>Introduction</h2>
 <p>The goal of ecce is to make it easy to translate English words into
 Chinese, or translate Chinese words into English. It also support browse
-translation results in website.</p>
+translation results in website. In addition, also support obtain the
+pinyin of the Chinese character, so that you can more easily understand
+the pronunciation of the Chinese character.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Install development version from GitLab</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_git</span>(<span class="st">&quot;https://gitlab.com/chuxinyuan/ecce.git&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Install from CRAN</span></span>
@@ -425,6 +429,11 @@ Text Translation API documentation</a>.</p>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="at">from =</span> <span class="st">&quot;en&quot;</span>, </span>
 <span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">&quot;zh-CHS&quot;</span></span>
 <span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="obtain-and-label-chinese-pinyin" class="section level2">
+<h2>Obtain and label Chinese pinyin</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Example-7</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">pinyin</span>(<span class="st">&quot;模型&quot;</span>)</span></code></pre></div>
 </div>
 
 

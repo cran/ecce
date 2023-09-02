@@ -40,24 +40,8 @@ translate_view = function(input, from = "auto", to = "auto") {
     stop('You need to provide the ID and PASSWORD of the Youdao API.')
   }
 
-  # Set the rule for intercepting input characters
-  input = input[1]
-  truncate = function(input) {
-    if (is.null(input)) {
-      return(NULL)
-    }
-    size = nchar(input)
-    if (size <= 20) {
-      return(input)
-    } else {
-      truncated_input = paste0(
-        substr(input, 1, 10), size,
-        substr(input, size - 9, size)
-      )
-      return(truncated_input)
-    }
-  }
-  q = truncate(input)
+  # Process text to be translated
+  q = input[1]
 
   # Set the source and target language
   from = from
@@ -73,18 +57,34 @@ translate_view = function(input, from = "auto", to = "auto") {
     )
   )
 
+  # Set the rule for intercepting input characters
+  truncate = function(x) {
+    if (is.null(x)) {
+      return(NULL)
+    }
+    size = nchar(x)
+    if (size <= 20) {
+      return(x)
+    } else {
+      truncated = paste0(
+        substr(x, 1, 10), size,
+        substr(input, size - 9, size)
+      )
+      return(truncated)
+    }
+  }
+
   # Processing signature information
-  # sha256(ID+input+salt+curtime+secret)
   sign = tolower(
     digest::digest(
-      paste0(app_key, q, salt, curtime, app_secret),
+      paste0(app_key, truncate(q), salt, curtime, app_secret),
       algo = "sha256",
       serialize = FALSE
     )
   )
 
   # Setting the Signature Type
-  signType = "v3"
+  sign_type = "v3"
 
   # Generate parameter list
   params = list(
@@ -94,7 +94,7 @@ translate_view = function(input, from = "auto", to = "auto") {
     appKey = app_key,
     salt = salt,
     sign = sign,
-    signType = signType,
+    signType = sign_type,
     curtime = curtime
   )
 

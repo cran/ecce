@@ -15,7 +15,7 @@ vignette: >
 
 ## Introduction
 
-The goal of ecce is to make it easy to translate English words into Chinese, or translate Chinese words into English. It also support browse translation results in website.
+The goal of ecce is to make it easy to translate English words into Chinese, or translate Chinese words into English. It also support browse translation results in website. In addition, also support obtain the pinyin of the Chinese character, so that you can more easily understand the pronunciation of the Chinese character.
 
 ```{r, eval = FALSE}
 # Install development version from GitLab
@@ -88,4 +88,11 @@ translate_view(
   from = "en", 
   to = "zh-CHS"
 )
+```
+
+## Obtain and label Chinese pinyin
+
+```{r, eval = FALSE}
+# Example-7
+pinyin("模型")
 ```

@@ -1,15 +1,3 @@
-<table>
-<tbody>
-<tr class="odd">
-<td>title: ecce</td>
-</tr>
-<tr class="even">
-<td>output: github_document</td>
-</tr>
-</tbody>
-</table>
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # ecce <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
@@ -56,7 +44,9 @@ PASSWORD in the following code and run it once.
 ## Usage
 
 Get started with pass a Chinese or English word into the translation
-function.
+function. In addition, also support obtain the pinyin of the Chinese 
+character, so that you can more easily understand the pronunciation
+of the Chinese character.
 
     # Example-1
     translate("中国")
@@ -69,6 +59,9 @@ function.
 
     # Example-4
     translate_view("good")
+    
+    # Example-5
+    pinyin("模型")
 
 ## License
 
