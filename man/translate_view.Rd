@@ -21,7 +21,6 @@ When you pass in an English or Chinese word, this function will Open
 Youdao website browse translation results.
 }
 \examples{
-
 # Example(Not run)
 # translate_view("good")
 # translate_view("quarto", from = "en", to = "zh-CHS")

@@ -14,7 +14,6 @@
 #' @return A list consisting of Phonetic, explains, etc about target language.
 #'
 #' @examples
-#'
 #' # Example(Not run)
 #' # translate("good")
 #' # translate("quarto", from = "en", to = "zh-CHS")

@@ -10,9 +10,8 @@
 #' @return A string consisting of pinyin and input Chinese character.
 #'
 #' @examples
-#'
 #' # Example(Not run)
-#' # translate("type Chinese character")
+#' # pinyin("type Chinese character")
 #'
 #' @export
 

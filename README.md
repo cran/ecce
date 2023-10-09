@@ -8,10 +8,12 @@ or translate Chinese words into English. Learn more in
 
 ## Installation
 
-    # Install development version from GitLab
-    remotes::install_git("https://gitlab.com/chuxinyuan/ecce.git")
-    # Install from CRAN
-    install.packages("ecce")
+``` r
+# Install development version from GitLab
+remotes::install_gitlab("chuxinyuan/ecce")
+# Install from CRAN
+install.packages("ecce")
+```
 
 ## Provide the ID and PASSWORD for the Youdao API
 
@@ -20,26 +22,28 @@ Wisdom Cloud AI open platform](https://ai.youdao.com/), and then open
 the text translation application. Then put your Youdao API ID and
 PASSWORD in the following code and run it once.
 
-    if (!file.exists("~/.Renviron")){
-      file.create("~/.Renviron")
-    } 
+``` r
+if (!file.exists("~/.Renviron")){
+  file.create("~/.Renviron")
+} 
 
-    file_path = "~/.Renviron"
-    file = file(file_path, open = "a")
+file_path = "~/.Renviron"
+file = file(file_path, open = "a")
 
-    comment = "# ID and PASSWORD of Youdao Translation"
-    writeLines(comment, file)
+comment = "# ID and PASSWORD of Youdao Translation"
+writeLines(comment, file)
 
-    code_lines = c(
-      "app_key = \"Your Youdao API ID\"",
-      "app_secret = \"Your Youdao API PASSWORD\""
-    )
+code_lines = c(
+  "app_key = \"Your Youdao API ID\"",
+  "app_secret = \"Your Youdao API PASSWORD\""
+)
 
-    for (code in code_lines) {
-      writeLines(code, file)
-    }
+for (code in code_lines) {
+  writeLines(code, file)
+}
 
-    close(file)
+close(file)
+```
 
 ## Usage
 
@@ -48,20 +52,22 @@ function. In addition, also support obtain the pinyin of the Chinese
 character, so that you can more easily understand the pronunciation
 of the Chinese character.
 
-    # Example-1
-    translate("中国")
+``` r
+# Example-1
+translate("中国")
 
-    # Example-2
-    translate("good")
+# Example-2
+translate("good")
 
-    # Example-3
-    translate_view("中国")
+# Example-3
+translate_view("中国")
 
-    # Example-4
-    translate_view("good")
-    
-    # Example-5
-    pinyin("模型")
+# Example-4
+translate_view("good")
+
+# Example-5
+pinyin("模型")
+```
 
 ## License
 

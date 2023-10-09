@@ -18,8 +18,7 @@ Chinese character, so that you can more easily understand the pronunciation
 of the Chinese character.
 }
 \examples{
-
 # Example(Not run)
-# translate("type Chinese character")
+# pinyin("type Chinese character")
 
 }

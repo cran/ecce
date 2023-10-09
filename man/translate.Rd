@@ -22,7 +22,6 @@ the Youdao text translation API for R to return the corresponding type
 of Chinese or English representation.
 }
 \examples{
-
 # Example(Not run)
 # translate("good")
 # translate("quarto", from = "en", to = "zh-CHS")

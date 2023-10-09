@@ -19,7 +19,7 @@ The goal of ecce is to make it easy to translate English words into Chinese, or 
 
 ```{r, eval = FALSE}
 # Install development version from GitLab
-remotes::install_git("https://gitlab.com/chuxinyuan/ecce.git")
+remotes::install_gitlab("chuxinyuan/ecce")
 # Install from CRAN
 install.packages("ecce")
 ```
