@@ -28,10 +28,10 @@
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  # Example-1
-#  translate("中国")
+#  translate("我喜欢中国")
 #  
 #  # Example-2
-#  translate("good")
+#  translate("I like China")
 #  
 #  # Example-3
 #  translate(
@@ -42,10 +42,10 @@
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  # Example-4
-#  translate_view("中国")
+#  translate_view("我喜欢中国")
 #  
 #  # Example-5
-#  translate_view("good")
+#  translate_view("I like China")
 #  
 #  # Example-6
 #  translate_view(
@@ -56,5 +56,5 @@
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  # Example-7
-#  pinyin("模型")
+#  pinyin("时间序列模型")
 

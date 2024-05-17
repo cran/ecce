@@ -1,21 +1,21 @@
-#' @title Translate English words into Chinese, or translate Chinese words into English
+#' @title Translate English sentence into Chinese, or translate Chinese sentence into English
 #'
 #' @description
-#' When you pass in an English or Chinese word, this function will calls
+#' When you pass in an English or Chinese sentence, this function will calls
 #' the Youdao text translation API for R to return the corresponding type
 #' of Chinese or English representation.
 #'
-#' @param input An English or Chinese word.
+#' @param input An English or Chinese sentence.
 #'
 #' @param from The source language, an optional parameter.
 #'
 #' @param to The target language, an optional parameter.
 #'
-#' @return A list consisting of Phonetic, explains, etc about target language.
+#' @return The translation results about target language.
 #'
 #' @examples
 #' # Example(Not run)
-#' # translate("good")
+#' # translate("I like China")
 #' # translate("quarto", from = "en", to = "zh-CHS")
 #'
 #' @export
@@ -104,22 +104,17 @@ translate = function(input, from = "auto", to = "auto") {
 
   # The result of cleaning and processing
   json_data = jsonlite::fromJSON(translated_data)
-  result = list(
-    Query = json_data$query,
-    Phonetic = json_data$basic$phonetic,
-    WFS = json_data$basic$wfs,
-    Explains = json_data$basic$explains
-  )
+  result = json_data$translation
 
   # Return to the result and gives the necessary prompts
-  if (is.null(result$Explains)) {
+  if (is.null(result)) {
     stop(
       paste(
-      "Please check that the word are spelled correctly,",
-       "if the spelling is really fine, then you can try",
-       "explicitly giving the source language and target",
-       "language parameter Settings by 'from' and 'to'.",
-      sep = " "
+        "Please check that the words are spelled correctly,",
+        "if the spelling is really fine, then you can try",
+        "explicitly giving the source language and target",
+        "language parameter Settings by 'from' and 'to'.",
+        sep = " "
       )
     )
   } else {

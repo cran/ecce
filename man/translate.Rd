@@ -2,28 +2,28 @@
 % Please edit documentation in R/translate.R
 \name{translate}
 \alias{translate}
-\title{Translate English words into Chinese, or translate Chinese words into English}
+\title{Translate English sentence into Chinese, or translate Chinese sentence into English}
 \usage{
 translate(input, from = "auto", to = "auto")
 }
 \arguments{
-\item{input}{An English or Chinese word.}
+\item{input}{An English or Chinese sentence.}
 
 \item{from}{The source language, an optional parameter.}
 
 \item{to}{The target language, an optional parameter.}
 }
 \value{
-A list consisting of Phonetic, explains, etc about target language.
+The translation results about target language.
 }
 \description{
-When you pass in an English or Chinese word, this function will calls
+When you pass in an English or Chinese sentence, this function will calls
 the Youdao text translation API for R to return the corresponding type
 of Chinese or English representation.
 }
 \examples{
 # Example(Not run)
-# translate("good")
+# translate("I like China")
 # translate("quarto", from = "en", to = "zh-CHS")
 
 }

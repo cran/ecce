@@ -12,7 +12,7 @@
 
 <meta name="author" content="Xinyuan Chu" />
 
-<meta name="date" content="2023-10-09" />
+<meta name="date" content="2024-05-18" />
 
 <title>Introduction to ecce</title>
 
@@ -51,7 +51,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -62,7 +62,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to ecce</h1>
 <h4 class="author"><a href="https://cxy.rbind.io/">Xinyuan Chu</a></h4>
-<h4 class="date">2023-10-09</h4>
+<h4 class="date">2024-05-18</h4>
 
 
 <div id="TOC">
@@ -358,11 +358,11 @@ pinyin</a></li>
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>The goal of ecce is to make it easy to translate English words into
-Chinese, or translate Chinese words into English. It also support browse
-translation results in website. In addition, also support obtain the
-pinyin of the Chinese character, so that you can more easily understand
-the pronunciation of the Chinese character.</p>
+<p>The goal of ecce is to make it easy to translate English sentence
+into Chinese, or translate Chinese sentence into English. It also
+support browse translation results in website. In addition, also support
+obtain the pinyin of the Chinese character, so that you can more easily
+understand the pronunciation of the Chinese character.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Install development version from GitLab</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_gitlab</span>(<span class="st">&quot;chuxinyuan/ecce&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Install from CRAN</span></span>
@@ -403,10 +403,10 @@ need to explicitly specify the from and to values as “en” or
 <p>The code for each language can be found in the <a href="https://ai.youdao.com/DOCSIRMA/html/trans/api/wbfy/index.html">Youdao
 Text Translation API documentation</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Example-1</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">translate</span>(<span class="st">&quot;中国&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">translate</span>(<span class="st">&quot;我喜欢中国&quot;</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Example-2</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">translate</span>(<span class="st">&quot;good&quot;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">translate</span>(<span class="st">&quot;I like China&quot;</span>)</span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Example-3</span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">translate</span>(</span>
@@ -418,10 +418,10 @@ Text Translation API documentation</a>.</p>
 <div id="browse-translate-results-in-website" class="section level2">
 <h2>Browse translate results in website</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Example-4</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">translate_view</span>(<span class="st">&quot;中国&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">translate_view</span>(<span class="st">&quot;我喜欢中国&quot;</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Example-5</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">translate_view</span>(<span class="st">&quot;good&quot;</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">translate_view</span>(<span class="st">&quot;I like China&quot;</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># Example-6</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">translate_view</span>(</span>
@@ -433,7 +433,7 @@ Text Translation API documentation</a>.</p>
 <div id="obtain-and-label-chinese-pinyin" class="section level2">
 <h2>Obtain and label Chinese pinyin</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Example-7</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">pinyin</span>(<span class="st">&quot;模型&quot;</span>)</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">pinyin</span>(<span class="st">&quot;时间序列模型&quot;</span>)</span></code></pre></div>
 </div>
 
 

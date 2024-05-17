@@ -1,20 +1,20 @@
 #' @title Open a Youdao website browse translation results
 #'
 #' @description
-#' When you pass in an English or Chinese word, this function will Open
+#' When you pass in an English or Chinese sentence, this function will Open
 #' Youdao website browse translation results.
 #'
-#' @param input An English or Chinese word.
+#' @param input An English or Chinese sentence.
 #'
 #' @param from The source language, an optional parameter.
 #'
 #' @param to The target language, an optional parameter.
 #'
-#' @return A list consisting of Phonetic, explains, etc about target language.
+#' @return Just open a website and do not return any results.
 #'
 #' @examples
 #' # Example(Not run)
-#' # translate_view("good")
+#' # translate_view("I like China")
 #' # translate_view("quarto", from = "en", to = "zh-CHS")
 #'
 #' @export
@@ -103,19 +103,13 @@ translate_view = function(input, from = "auto", to = "auto") {
 
   # The result of cleaning and processing
   json_data = jsonlite::fromJSON(translated_data)
-  result = list(
-    Query = json_data$query,
-    Phonetic = json_data$basic$phonetic,
-    WFS = json_data$basic$wfs,
-    Explains = json_data$basic$explains,
-    Url = json_data$mTerminalDict$url
-  )
+  result = json_data$webdict$url
 
   # Return to the result and gives the necessary prompts
-  if (is.null(result$Explains)) {
+  if (is.null(result)) {
     stop(
       paste(
-        "Please check that the word are spelled correctly,",
+        "Please check that the words are spelled correctly,",
         "if the spelling is really fine, then you can try",
         "explicitly giving the source language and target",
         "language parameter Settings by 'from' and 'to'.",
@@ -123,8 +117,8 @@ translate_view = function(input, from = "auto", to = "auto") {
       )
     )
   } else {
-    url = utils::URLencode(iconv(result$Url, to = "UTF-8"))
-    utils::browseURL(result$Url)
+    url = utils::URLencode(iconv(result, to = "UTF-8"))
+    utils::browseURL(result)
   }
 
 }

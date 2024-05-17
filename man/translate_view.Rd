@@ -7,22 +7,22 @@
 translate_view(input, from = "auto", to = "auto")
 }
 \arguments{
-\item{input}{An English or Chinese word.}
+\item{input}{An English or Chinese sentence.}
 
 \item{from}{The source language, an optional parameter.}
 
 \item{to}{The target language, an optional parameter.}
 }
 \value{
-A list consisting of Phonetic, explains, etc about target language.
+Just open a website and do not return any results.
 }
 \description{
-When you pass in an English or Chinese word, this function will Open
+When you pass in an English or Chinese sentence, this function will Open
 Youdao website browse translation results.
 }
 \examples{
 # Example(Not run)
-# translate_view("good")
+# translate_view("I like China")
 # translate_view("quarto", from = "en", to = "zh-CHS")
 
 }
