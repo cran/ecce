@@ -18,7 +18,8 @@ Chinese character, so that you can more easily understand the pronunciation
 of the Chinese character.
 }
 \examples{
-# Example(Not run)
-# pinyin("type Chinese character")
+\dontrun{
+  pinyin("type Chinese character")
+}
 
 }

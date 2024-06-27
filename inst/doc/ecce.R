@@ -5,26 +5,12 @@
 #  install.packages("ecce")
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  if (!file.exists("~/.Renviron")){
-#    file.create("~/.Renviron")
-#  }
-#  
-#  file_path = "~/.Renviron"
-#  file = file(file_path, open = "a")
-#  
-#  comment = "# ID and PASSWORD of Youdao Translation"
-#  writeLines(comment, file)
-#  
-#  code_lines = c(
-#    "app_key = \"Your Youdao API ID\"",
-#    "app_secret = \"Your Youdao API PASSWORD\""
+#  cat(
+#    '\n# ID and PASSWORD of Youdao Translation',
+#    'app_key = "Your Youdao API ID"',
+#    'app_secret = "Your Youdao API PASSWORD"',
+#    file = '~/.Renviron', sep = '\n', append = TRUE
 #  )
-#  
-#  for (code in code_lines) {
-#    writeLines(code, file)
-#  }
-#  
-#  close(file)
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  # Example-1

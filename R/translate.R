@@ -14,9 +14,10 @@
 #' @return The translation results about target language.
 #'
 #' @examples
-#' # Example(Not run)
-#' # translate("I like China")
-#' # translate("quarto", from = "en", to = "zh-CHS")
+#' \dontrun{
+#'   translate("I like China")
+#'   translate("quarto", from = "en", to = "zh-CHS")
+#' }
 #'
 #' @export
 

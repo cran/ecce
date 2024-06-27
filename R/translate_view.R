@@ -13,9 +13,10 @@
 #' @return Just open a website and do not return any results.
 #'
 #' @examples
-#' # Example(Not run)
-#' # translate_view("I like China")
-#' # translate_view("quarto", from = "en", to = "zh-CHS")
+#' \dontrun{
+#'   translate_view("I like China")
+#'   translate_view("quarto", from = "en", to = "zh-CHS")
+#' }
 #'
 #' @export
 

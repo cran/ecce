@@ -21,8 +21,9 @@ When you pass in an English or Chinese sentence, this function will Open
 Youdao website browse translation results.
 }
 \examples{
-# Example(Not run)
-# translate_view("I like China")
-# translate_view("quarto", from = "en", to = "zh-CHS")
+\dontrun{
+  translate_view("I like China")
+  translate_view("quarto", from = "en", to = "zh-CHS")
+}
 
 }

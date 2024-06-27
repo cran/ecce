@@ -10,8 +10,9 @@
 #' @return A string consisting of pinyin and input Chinese character.
 #'
 #' @examples
-#' # Example(Not run)
-#' # pinyin("type Chinese character")
+#' \dontrun{
+#'   pinyin("type Chinese character")
+#' }
 #'
 #' @export
 

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Xinyuan Chu" />
 
-<meta name="date" content="2024-05-18" />
+<meta name="date" content="2024-06-28" />
 
 <title>Introduction to ecce</title>
 
@@ -62,7 +62,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -339,8 +339,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Introduction to ecce</h1>
-<h4 class="author"><a href="https://cxy.rbind.io/">Xinyuan Chu</a></h4>
-<h4 class="date">2024-05-18</h4>
+<h4 class="author"><a href="https://cxy.cc/">Xinyuan Chu</a></h4>
+<h4 class="date">2024-06-28</h4>
 
 
 <div id="TOC">
@@ -373,26 +373,12 @@ understand the pronunciation of the Chinese character.</p>
 <p>To use the ecce package, users need to first register with the <a href="https://ai.youdao.com/">Youdao Wisdom Cloud AI open platform</a>,
 and then open the text translation application. Then put your Youdao API
 ID and PASSWORD in the following code and run it once.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">&quot;~/.Renviron&quot;</span>)){</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="fu">file.create</span>(<span class="st">&quot;~/.Renviron&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>} </span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>file_path <span class="ot">=</span> <span class="st">&quot;~/.Renviron&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>file <span class="ot">=</span> <span class="fu">file</span>(file_path, <span class="at">open =</span> <span class="st">&quot;a&quot;</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>comment <span class="ot">=</span> <span class="st">&quot;# ID and PASSWORD of Youdao Translation&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">writeLines</span>(comment, file)</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>code_lines <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  <span class="st">&quot;app_key = </span><span class="sc">\&quot;</span><span class="st">Your Youdao API ID</span><span class="sc">\&quot;</span><span class="st">&quot;</span>,</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>  <span class="st">&quot;app_secret = </span><span class="sc">\&quot;</span><span class="st">Your Youdao API PASSWORD</span><span class="sc">\&quot;</span><span class="st">&quot;</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>)</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="cf">for</span> (code <span class="cf">in</span> code_lines) {</span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>  <span class="fu">writeLines</span>(code, file)</span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>}</span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="fu">close</span>(file)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">cat</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="st">&#39;</span><span class="sc">\n</span><span class="st"># ID and PASSWORD of Youdao Translation&#39;</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="st">&#39;app_key = &quot;Your Youdao API ID&quot;&#39;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="st">&#39;app_secret = &quot;Your Youdao API PASSWORD&quot;&#39;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">&#39;~/.Renviron&#39;</span>, <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>, <span class="at">append =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="basic-usage" class="section level2">
 <h2>Basic usage</h2>

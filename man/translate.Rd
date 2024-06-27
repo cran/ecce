@@ -22,8 +22,9 @@ the Youdao text translation API for R to return the corresponding type
 of Chinese or English representation.
 }
 \examples{
-# Example(Not run)
-# translate("I like China")
-# translate("quarto", from = "en", to = "zh-CHS")
+\dontrun{
+  translate("I like China")
+  translate("quarto", from = "en", to = "zh-CHS")
+}
 
 }
