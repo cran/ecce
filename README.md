@@ -9,8 +9,8 @@ or translate Chinese sentence into English. Learn more in
 ## Installation
 
 ``` r
-# Install development version from GitLab
-remotes::install_gitlab("chuxinyuan/ecce")
+# Install development version via GitHub
+remotes::install_github("chuxinyuan/ecce")
 # Install from CRAN
 install.packages("ecce")
 ```
